@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { DiApple } from 'react-icons/di';
+import { FiCodesandbox } from 'react-icons/fi';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
@@ -9,7 +9,12 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
   
-  const { activeMenu, setActiveMenu } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const handleCloseSideBar = () => {
+    if(activeMenu && screenSize <= 900) {
+      setActiveMenu(false);
+    }
+  }
   const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md m-2';
   const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
   
@@ -19,9 +24,9 @@ const Sidebar = () => {
         <div className="flex justify-between items-center">
           
           {/* Logo and Name */}
-          <Link to="/" onClick={() => {}} className="items-center gap-3 ml-3 mt-4 flex text-xl 
+          <Link to="/" onClick={handleCloseSideBar} className="items-center gap-3 ml-3 mt-4 flex text-xl 
           font-extrabold tracking-tight dark:text-white text-slate-900">
-            <DiApple /> <span>DashApp</span>
+            <FiCodesandbox /> <span>DashApp</span>
           </Link>
 
           {/* Close Button */}
@@ -44,9 +49,7 @@ const Sidebar = () => {
                   <NavLink
                     to={`/${link.name}`}
                     key={link.name}
-                    onClick={() => setActiveMenu(
-                      (prevActiveMenu) =>
-                      !prevActiveMenu)}
+                    onClick={handleCloseSideBar}
                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                   >
                     {link.icon}

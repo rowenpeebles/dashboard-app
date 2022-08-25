@@ -38,7 +38,7 @@ const Sidebar = () => {
           </TooltipComponent>
         </div> 
 
-        {/* Items */}
+        {/* Mapping Items */}
         <div className="mt-10 ">
             {links.map((item) => (
               <div key={item.title}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { Stacked, Pie, Button, SparkLine } from '../components';
@@ -7,6 +7,9 @@ import { useStateContext } from '../contexts/ContextProvider';
 import { Header } from '../components';
 
 const Ecommerce = () => {
+
+  const { currentColor } = useStateContext();
+
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 rounded-3xl">
     <Header category="Dashboard" title="Ecommerce" />
@@ -21,7 +24,7 @@ const Ecommerce = () => {
             </div>
           </div>
           <div className="mt-6">
-            <Button color="white" bgColor="blue" text="Download" borderRadius="10px" size="md"/>
+            <Button color="white" bgColor={currentColor} text="Download" borderRadius="10px" size="md"/>
           </div>
         </div>
 
@@ -80,10 +83,10 @@ const Ecommerce = () => {
                 </div>
                 
                 <div className="mt-5">
-                    <SparkLine currentColor="blue" id="line-sparkline" type="Line" height="80px" width="250px" data={SparklineAreaData} color="blue"/>
+                    <SparkLine currentColor={currentColor} id="line-sparkline" type="Line" height="80px" width="250px" data={SparklineAreaData} color={currentColor}/>
                 </div>
                 <div className="mt-10">
-                  <Button color="white" bgColor="blue" text="Download Report" borderRadius="10px"/>
+                  <Button color="white" bgColor={currentColor} text="Download Report" borderRadius="10px"/>
                 </div>
               </div>
               <div>
